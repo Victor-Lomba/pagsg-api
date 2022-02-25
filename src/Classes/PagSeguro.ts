@@ -101,7 +101,7 @@ export class PagSeguro {
     }
 
     public async verifyNotification(code: string){
-        const url = `https://ws.sandboxpagseguro.uol.com.br/v2/authorizations/notifications/${code}?email=${this.config.email}&token=${this.config.token}`;
+        const url = `https://ws.sandbox.pagseguro.uol.com.br/v2/authorizations/notifications/${code}?email=${this.config.email}&token=${this.config.token}`;
         const response = await axios.get(url);
         return this.parser.parse(response.data);
     }
