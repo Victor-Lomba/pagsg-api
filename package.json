@@ -1,14 +1,14 @@
 {
   "name": "pagsg-api",
-  "version": "1.0.0",
+  "version": "0.1.8",
   "main": "lib/index.js",
-  "types":"lib/index.d.ts",
-  "description":"pagseguro api for node",
+  "types": "lib/index.d.ts",
+  "description": "pagseguro api for node",
   "scripts": {
     "build": "tsc",
-    "prepare":"npm run build",
-    "lint":"eslint .",
-    "prepublishOnly":"npm run lint",
+    "prepare": "npm run build",
+    "lint": "eslint . --fix",
+    "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
     "version": "npm run lint --fix && git add -A src",
     "postversion": "git push && git push --tags"
@@ -19,12 +19,21 @@
   "author": "Elwake",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^17.0.18",
     "eslint": "^8.8.0",
     "typescript": "^4.5.5"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.11.0",
-    "@typescript-eslint/parser": "^5.11.0"
+    "@typescript-eslint/parser": "^5.11.0",
+    "axios": "^0.25.0",
+    "fast-xml-parser": "^4.0.3",
+    "pix-utils": "^2.2.2"
   },
-  "keywords": ["pagseguro", "typescript", "pagamento", "api"]
+  "keywords": [
+    "pagseguro",
+    "typescript",
+    "pagamento",
+    "api"
+  ]
 }

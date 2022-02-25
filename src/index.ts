@@ -1,1 +1,4 @@
-export const Greeter = (name: string) => `Hello ${name}`;
+import { PagSeguro } from "./Classes/PagSeguro";
+
+export { PagSeguro };
+
