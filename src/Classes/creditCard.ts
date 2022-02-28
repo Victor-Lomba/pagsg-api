@@ -1,5 +1,5 @@
 import axios from "axios";
-import {XMLBuilder} from "fast-xml-parser";
+import {XMLBuilder, XMLParser} from "fast-xml-parser";
 import {PagSeguro} from "./PagSeguro";
 
 type CreditCardObject = {
@@ -93,6 +93,7 @@ type CreditCardObject = {
 
 export class CreditCard{
     config: CreditCardObject;
+    parser = new XMLParser();
     builder = new XMLBuilder({arrayNodeName: "payment"});
 
     constructor(config: CreditCardObject){
@@ -133,6 +134,6 @@ export class CreditCard{
                 }
             }
         );
-        return response.data;
+        return this.parser.parse(response.data);
     }
 }
