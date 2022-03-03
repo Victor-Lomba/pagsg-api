@@ -60,7 +60,7 @@ export class Boleto{
     
     public async submit(){
         const body = this.builder.build({payment: this.config});
-        const url = `https://ws.sandbox.pagseguro.uol.com.br/v2/transactions?email=${PagSeguro.singleton.config.email}&token=${PagSeguro.singleton.config.token}`;
+        const url = `https://ws.pagseguro.uol.com.br/recurring-payment/boletos?email=${PagSeguro.singleton.config.email}&token=${PagSeguro.singleton.config.token}`;
         const response = await axios.post(
             url, 
             body,

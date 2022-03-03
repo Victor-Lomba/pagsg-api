@@ -61,6 +61,7 @@ export class PagSeguro {
         const response = await axios.post(url, body, {
             headers: {
                 "Content-Type": "application/xml;",
+                "keep-alive": "timeout=5, max=100"
             }
         });
         return this.parser.parse(response.data);
