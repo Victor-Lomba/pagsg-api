@@ -123,7 +123,7 @@ export class CreditCard{
     }
     public async submit(){
         const body = this.builder.build({payment: this.config});
-        const url = `https://ws.sandbox.pagseguro.uol.com.br/transactions?appId=${PagSeguro.singleton.config.appId}&appKey=${PagSeguro.singleton.config.appKey}`;
+        const url = `https://ws.pagseguro.uol.com.br/transactions?appId=${PagSeguro.singleton.config.appId}&appKey=${PagSeguro.singleton.config.appKey}`;
         const response = await axios.post(
             url, 
             body,

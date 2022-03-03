@@ -35,13 +35,13 @@ export class PagSeguro {
    * </session>`
    */
     public async createSession(){
-        const url = `https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=${this.config.email}&token=${this.config.token}`;
+        const url = `https://ws.pagseguro.uol.com.br/v2/sessions?email=${this.config.email}&token=${this.config.token}`;
         const response = await axios.post(url);
         return response.data.split("id>")[1].split("<")[0];
     }
 
     public async getInstallments(amount: string, sessionId: string, creditCardBrand: string, MaxInstallmentsNoInterest: string){
-        const url = `https://sandbox.pagseguro.uol.com.br/checkout/v2/installments.json?amount=${amount}&sessionId=${sessionId}&creditCardBrand=${creditCardBrand}&maxInstallmentNoInterest=${MaxInstallmentsNoInterest}`;
+        const url = `https://pagseguro.uol.com.br/checkout/v2/installments.json?amount=${amount}&sessionId=${sessionId}&creditCardBrand=${creditCardBrand}&maxInstallmentNoInterest=${MaxInstallmentsNoInterest}`;
         const response = await axios.get(url);
         return response.data;
     }
@@ -57,10 +57,11 @@ export class PagSeguro {
                 notificationURL
             }
         });
-        const url = `https://ws.sandbox.pagseguro.uol.com.br/v2/authorizations/request?appId=${this.config.appId}&appKey=${this.config.appKey}`;
+        const url = `https://ws.pagseguro.uol.com.br/v2/authorizations/request?appId=${this.config.appId}&appKey=${this.config.appKey}`;
         const response = await axios.post(url, body, {
             headers: {
                 "Content-Type": "application/xml;",
+                "Connection": "keep-alive",
                 "keep-alive": "timeout=5, max=100"
             }
         });
@@ -68,7 +69,7 @@ export class PagSeguro {
     }
 
     public async getPaymentMethods(session: string, amount: string){
-        const url = `https://ws.sandbox.pagseguro.uol.com.br/v2/payment-methods?sessionId=${session}&amount=${amount}`;
+        const url = `https://ws.pagseguro.uol.com.br/v2/payment-methods?sessionId=${session}&amount=${amount}`;
         const response = await axios.get(url);
         return this.parser.parse(response.data);
     }
@@ -102,7 +103,7 @@ export class PagSeguro {
     }
 
     public async verifyNotification(code: string){
-        const url = `https://ws.sandbox.pagseguro.uol.com.br/v2/authorizations/notifications/${code}?email=${this.config.email}&token=${this.config.token}`;
+        const url = `https://ws.pagseguro.uol.com.br/v2/authorizations/notifications/${code}?email=${this.config.email}&token=${this.config.token}`;
         const response = await axios.get(url);
         return this.parser.parse(response.data);
     }
