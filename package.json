@@ -1,6 +1,6 @@
 {
   "name": "pagsg-api",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "description": "pagseguro api for node",
